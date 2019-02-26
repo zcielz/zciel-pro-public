@@ -39,6 +39,15 @@ public class CodeUtils {
         return arr;
     }
 
+    // for test 专门用于NetherlandsFlag荷兰国旗问题
+    public static int[] generateArray() {
+        int[] arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * 3);
+        }
+        return arr;
+    }
+
     // for test
     public static int[] copyArray(int[] arr) {
         if (arr == null) {

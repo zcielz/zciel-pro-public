@@ -20,7 +20,7 @@ public class Code_12_SmallSum {
         if (l == r) {
             return 0;
         }
-        int mid = l + ((r - 1) >> 1); //取中间
+        int mid = l + ((r - l) >> 1); //取中间
         return mergeSort(arr, l, mid) + mergeSort(arr, mid + 1, r) + merge(arr, l, mid, r);
     }
 
