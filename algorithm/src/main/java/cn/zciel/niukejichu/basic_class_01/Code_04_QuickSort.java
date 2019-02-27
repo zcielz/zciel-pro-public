@@ -17,7 +17,7 @@ public class Code_04_QuickSort {
     }
 
     private static void quickSort(int[] arr, int l, int r) {
-        if (l < r) { //只有左侧小于右侧的时候
+        if (l < r) { //只有左侧小于右侧的时候.
             swap(arr, l + (int) (Math.random() * (r - l + 1)), r);//随机快排 就是最后边的一个数作为快排的参照物
             int[] p = partition(arr, l, r);
             quickSort(arr, l, p[0] - 1);
