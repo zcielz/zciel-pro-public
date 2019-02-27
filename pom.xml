@@ -5,6 +5,7 @@
     <modules>
         <module>effectiveJava</module>
         <module>algorithm</module>
+        <module>designPatterns</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
