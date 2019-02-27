@@ -8,7 +8,7 @@ import static cn.zciel.niukejichu.utils.CodeUtils.*;
  * @Description
  */
 public class Code_04_QuickSort {
-    //TODO
+
     public static void quickSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
@@ -16,29 +16,29 @@ public class Code_04_QuickSort {
         quickSort(arr, 0, arr.length - 1);
     }
 
-    public static void quickSort(int[] arr, int l, int r) {
-        if (l < r) {
-            swap(arr, l + (int) (Math.random() * (r - l + 1)), r); //随机快排
+    private static void quickSort(int[] arr, int l, int r) {
+        if (l < r) { //只有左侧小于右侧的时候
+            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);//随机快排 就是最后边的一个数作为快排的参照物
             int[] p = partition(arr, l, r);
             quickSort(arr, l, p[0] - 1);
             quickSort(arr, p[1] + 1, r);
         }
     }
 
-    public static int[] partition(int[] arr, int l, int r) {
-        int less = l - 1;
-        int more = r;
+    private static int[] partition(int[] arr, int l, int r) {
+        int less = l - 1; //取出左边-1位置 （如果为0，就是-1）
+        int more = r; //最后侧的位置
         while (l < more) {
             if (arr[l] < arr[r]) {
-                swap(arr, ++less, l++);
-            } else if (arr[l] > arr[r]) {
-                swap(arr, --more, l);
+                swap(arr, ++less, l++);//左侧+1的位置的数 和 最后侧数交换，这里就相当于less的坐标+1，
+            } else if (arr[l] > arr[r]) {  //数字大 就将
+                swap(arr, --more, l); //more 最后侧的位置-1，与
             } else {
-                l++;
+                l++;  //如果相等，就单纯移动左边坐标的位置
             }
         }
-        swap(arr, more, r);
-        return new int[]{less + 1, more};
+        swap(arr, more, r); //将最右侧的数字恢复到中间
+        return new int[]{less + 1, more}; //返回中间字段信息
     }
 
     // for test
