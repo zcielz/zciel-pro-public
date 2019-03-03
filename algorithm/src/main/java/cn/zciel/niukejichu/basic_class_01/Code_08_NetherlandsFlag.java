@@ -3,7 +3,7 @@ package cn.zciel.niukejichu.basic_class_01;
 import static cn.zciel.niukejichu.utils.CodeUtils.*;
 
 /**
- * 荷兰国旗问题
+ * 荷兰国旗问题 不能有稳定性
  */
 public class Code_08_NetherlandsFlag {
 
@@ -28,8 +28,8 @@ public class Code_08_NetherlandsFlag {
         printArray(test);
         int[] res = partition(test, 0, test.length - 1, 1);
         printArray(test);
-        System.out.println(res[0]);
-        System.out.println(res[1]);
+        /*System.out.println(res[0]);
+        System.out.println(res[1]);*/
         printArray(res);
 
     }
