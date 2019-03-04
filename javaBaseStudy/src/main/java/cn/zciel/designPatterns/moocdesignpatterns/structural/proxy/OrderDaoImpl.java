@@ -1,7 +1,6 @@
 package cn.zciel.designPatterns.moocdesignpatterns.structural.proxy;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
 
 /**
  * @author YINZHEN
@@ -10,6 +9,7 @@ import org.springframework.core.annotation.Order;
  */
 @Slf4j
 public class OrderDaoImpl implements IOrderDao {
+
     @Override
     public int insert(Order order) {
         log.info("Dao添加成功");
