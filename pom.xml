@@ -5,6 +5,7 @@
     <modules>
         <module>algorithm</module>
         <module>javaBaseStudy</module>
+        <module>netty</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
