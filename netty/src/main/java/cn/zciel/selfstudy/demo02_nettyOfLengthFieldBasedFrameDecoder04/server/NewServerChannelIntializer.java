@@ -3,6 +3,7 @@ package cn.zciel.selfstudy.demo02_nettyOfLengthFieldBasedFrameDecoder04.server;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
 
 /**
@@ -28,6 +29,10 @@ public class NewServerChannelIntializer extends ChannelInitializer<SocketChannel
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
 
-        //TODO
+        ChannelPipeline pipeline = socketChannel.pipeline();
+
+        pipeline.addLast(new NewDecoder(MAX_FRAME_LENGTH, LENGTH_FIELD_LENGTH, LENGTH_FIELD_OFFSET, LENGTH_ADJUSTMENT, INITIAL_BYTES_TO_STRIP, false));
+        //自己的逻辑Handler
+        pipeline.addLast("handler", new NewServerHandler());
     }
 }
