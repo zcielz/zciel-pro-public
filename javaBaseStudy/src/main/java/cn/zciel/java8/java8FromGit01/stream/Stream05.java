@@ -17,12 +17,19 @@ public class Stream05 {
         List<String> strings = Arrays.asList("d2", "a2", "b1", "b3", "c");
 
         test1(strings);
+        System.out.println("====");
         test2(strings);
+        System.out.println("====");
         test3(strings);
+        System.out.println("====");
         test4(strings);
+        System.out.println("====");
         test5(strings);
+        System.out.println("====");
         test6(strings);
+        System.out.println("====");
         test7(strings);
+        System.out.println("====");
         test8(strings);
 
     }
