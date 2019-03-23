@@ -1,7 +1,5 @@
 package cn.zciel.designPatterns.moocdesignpatterns.structural.composite;
 
-import com.sun.org.apache.xml.internal.resolver.Catalog;
-
 /**
  * @author YINZHEN
  * @date 2019/3/4 17:09

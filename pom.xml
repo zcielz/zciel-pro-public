@@ -6,6 +6,7 @@
         <module>algorithm</module>
         <module>javaBaseStudy</module>
         <module>netty</module>
+        <!--<module>learn_quartz</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
