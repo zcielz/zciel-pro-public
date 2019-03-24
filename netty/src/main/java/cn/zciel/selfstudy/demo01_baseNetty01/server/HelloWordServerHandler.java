@@ -15,7 +15,7 @@ public class HelloWordServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         log.info(ctx.channel().remoteAddress() + " === > server: " + msg.toString());
-        ctx.write("received your msg");
+        ctx.write("received your  msg");
         ctx.flush();
     }
 
