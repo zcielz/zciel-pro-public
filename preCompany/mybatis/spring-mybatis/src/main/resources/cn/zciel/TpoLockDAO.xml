@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zciel.mapper.TpoLockDAO">
+    <resultMap id="BaseResultMap" type="cn.zciel.model.TpoLock">
+        <id column="ID" jdbcType="VARCHAR" property="ID"/>
+        <result column="COMPANY_CODE" jdbcType="VARCHAR" property="COMPANY_CODE"/>
+        <result column="TRANSACTION_ID" jdbcType="VARCHAR" property="TRANSACTION_ID"/>
+        <result column="LOCK_CODE" jdbcType="VARCHAR" property="LOCK_CODE"/>
+        <result column="LOCK_NO" jdbcType="VARCHAR" property="LOCK_NO"/>
+        <result column="SHORT_NAME" jdbcType="VARCHAR" property="SHORT_NAME"/>
+        <result column="DOOR_NO" jdbcType="VARCHAR" property="DOOR_NO"/>
+        <result column="DISTRICT" jdbcType="VARCHAR" property="DISTRICT"/>
+        <result column="CITY" jdbcType="VARCHAR" property="CITY"/>
+        <result column="LNG" jdbcType="DECIMAL" property="LNG"/>
+        <result column="LAT" jdbcType="DECIMAL" property="LAT"/>
+        <result column="INSTALLER_NAME" jdbcType="VARCHAR" property="INSTALLER_NAME"/>
+        <result column="INSTALL_TIME" jdbcType="TIMESTAMP" property="INSTALL_TIME"/>
+        <result column="FACTORY" jdbcType="VARCHAR" property="FACTORY"/>
+        <result column="VERSION" jdbcType="VARCHAR" property="VERSION"/>
+        <result column="OPERATOR" jdbcType="VARCHAR" property="OPERATOR"/>
+        <result column="POSTAL_TYPE" jdbcType="VARCHAR" property="POSTAL_TYPE"/>
+        <result column="MODEL_NUMBER" jdbcType="VARCHAR" property="MODEL_NUMBER"/>
+        <result column="MAC" jdbcType="VARCHAR" property="MAC"/>
+        <result column="SECRET_KEY" jdbcType="VARCHAR" property="SECRET_KEY"/>
+        <result column="SERVER_IP" jdbcType="VARCHAR" property="SERVER_IP"/>
+        <result column="PORT" jdbcType="VARCHAR" property="PORT"/>
+        <result column="IS_IC" jdbcType="BIT" property="IS_IC"/>
+        <result column="IS_PIN" jdbcType="BIT" property="IS_PIN"/>
+        <result column="IS_FINGERPRINT" jdbcType="BIT" property="IS_FINGERPRINT"/>
+        <result column="IS_FACE" jdbcType="BIT" property="IS_FACE"/>
+        <result column="MAX_TIMES" jdbcType="DECIMAL" property="MAX_TIMES"/>
+        <result column="REMAIN_TIMES" jdbcType="DECIMAL" property="REMAIN_TIMES"/>
+        <result column="NOW_TIMES" jdbcType="DECIMAL" property="NOW_TIMES"/>
+        <result column="LAST_OPEN_TIME" jdbcType="TIMESTAMP" property="LAST_OPEN_TIME"/>
+        <result column="AUTH_USER_NUM" jdbcType="DECIMAL" property="AUTH_USER_NUM"/>
+        <result column="LAST_AUTH_TIME" jdbcType="TIMESTAMP" property="LAST_AUTH_TIME"/>
+        <result column="SPECIAL_PWD" jdbcType="VARCHAR" property="SPECIAL_PWD"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="STATUS"/>
+        <result column="SORT_NUM" jdbcType="DECIMAL" property="SORT_NUM"/>
+        <result column="DATA_VERSION" jdbcType="DECIMAL" property="DATA_VERSION"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="CREATOR"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="UPDATER"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="UPDATE_TIME"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="REMARK"/>
+        <result column="PRE_DETECTION_TIME" jdbcType="TIMESTAMP" property="PRE_DETECTION_TIME"/>
+        <result column="NEXT_DETECTION_TIME" jdbcType="TIMESTAMP" property="NEXT_DETECTION_TIME"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, COMPANY_CODE, TRANSACTION_ID, LOCK_CODE, LOCK_NO, SHORT_NAME, DOOR_NO, DISTRICT,
+    CITY, LNG, LAT, INSTALLER_NAME, INSTALL_TIME, FACTORY, VERSION, `OPERATOR`, POSTAL_TYPE,
+    MODEL_NUMBER, MAC, SECRET_KEY, SERVER_IP, PORT, IS_IC, IS_PIN, IS_FINGERPRINT, IS_FACE,
+    MAX_TIMES, REMAIN_TIMES, NOW_TIMES, LAST_OPEN_TIME, AUTH_USER_NUM, LAST_AUTH_TIME,
+    SPECIAL_PWD, `STATUS`, SORT_NUM, DATA_VERSION, CREATOR, CREATE_TIME, UPDATER, UPDATE_TIME,
+    REMARK, PRE_DETECTION_TIME, NEXT_DETECTION_TIME
+  </sql>
+    <select id="selectByExample" parameterType="cn.zciel.model.TpoLockExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tpo_lock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+        <if test="forUpdate != null and forUpdate == true">
+            for update
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tpo_lock
+        where ID = #{ID,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpo_lock
+    where ID = #{ID,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="cn.zciel.model.TpoLockExample">
+        delete from tpo_lock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoLock" useGeneratedKeys="true">
+    insert into tpo_lock (COMPANY_CODE, TRANSACTION_ID, LOCK_CODE,
+      LOCK_NO, SHORT_NAME, DOOR_NO,
+      DISTRICT, CITY, LNG,
+      LAT, INSTALLER_NAME, INSTALL_TIME,
+      FACTORY, VERSION, `OPERATOR`,
+      POSTAL_TYPE, MODEL_NUMBER, MAC,
+      SECRET_KEY, SERVER_IP, PORT,
+      IS_IC, IS_PIN, IS_FINGERPRINT,
+      IS_FACE, MAX_TIMES, REMAIN_TIMES,
+      NOW_TIMES, LAST_OPEN_TIME, AUTH_USER_NUM,
+      LAST_AUTH_TIME, SPECIAL_PWD, `STATUS`,
+      SORT_NUM, DATA_VERSION, CREATOR,
+      CREATE_TIME, UPDATER, UPDATE_TIME,
+      REMARK, PRE_DETECTION_TIME, NEXT_DETECTION_TIME
+      )
+    values (#{COMPANY_CODE,jdbcType=VARCHAR}, #{TRANSACTION_ID,jdbcType=VARCHAR}, #{LOCK_CODE,jdbcType=VARCHAR},
+      #{LOCK_NO,jdbcType=VARCHAR}, #{SHORT_NAME,jdbcType=VARCHAR}, #{DOOR_NO,jdbcType=VARCHAR},
+      #{DISTRICT,jdbcType=VARCHAR}, #{CITY,jdbcType=VARCHAR}, #{LNG,jdbcType=DECIMAL},
+      #{LAT,jdbcType=DECIMAL}, #{INSTALLER_NAME,jdbcType=VARCHAR}, #{INSTALL_TIME,jdbcType=TIMESTAMP},
+      #{FACTORY,jdbcType=VARCHAR}, #{VERSION,jdbcType=VARCHAR}, #{OPERATOR,jdbcType=VARCHAR},
+      #{POSTAL_TYPE,jdbcType=VARCHAR}, #{MODEL_NUMBER,jdbcType=VARCHAR}, #{MAC,jdbcType=VARCHAR},
+      #{SECRET_KEY,jdbcType=VARCHAR}, #{SERVER_IP,jdbcType=VARCHAR}, #{PORT,jdbcType=VARCHAR},
+      #{IS_IC,jdbcType=BIT}, #{IS_PIN,jdbcType=BIT}, #{IS_FINGERPRINT,jdbcType=BIT},
+      #{IS_FACE,jdbcType=BIT}, #{MAX_TIMES,jdbcType=DECIMAL}, #{REMAIN_TIMES,jdbcType=DECIMAL},
+      #{NOW_TIMES,jdbcType=DECIMAL}, #{LAST_OPEN_TIME,jdbcType=TIMESTAMP}, #{AUTH_USER_NUM,jdbcType=DECIMAL},
+      #{LAST_AUTH_TIME,jdbcType=TIMESTAMP}, #{SPECIAL_PWD,jdbcType=VARCHAR}, #{STATUS,jdbcType=VARCHAR},
+      #{SORT_NUM,jdbcType=DECIMAL}, #{DATA_VERSION,jdbcType=DECIMAL}, #{CREATOR,jdbcType=VARCHAR},
+      #{CREATE_TIME,jdbcType=TIMESTAMP}, #{UPDATER,jdbcType=VARCHAR}, #{UPDATE_TIME,jdbcType=TIMESTAMP},
+      #{REMARK,jdbcType=VARCHAR}, #{PRE_DETECTION_TIME,jdbcType=TIMESTAMP}, #{NEXT_DETECTION_TIME,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoLock"
+            useGeneratedKeys="true">
+        insert into tpo_lock
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="COMPANY_CODE != null">
+                COMPANY_CODE,
+            </if>
+            <if test="TRANSACTION_ID != null">
+                TRANSACTION_ID,
+            </if>
+            <if test="LOCK_CODE != null">
+                LOCK_CODE,
+            </if>
+            <if test="LOCK_NO != null">
+                LOCK_NO,
+            </if>
+            <if test="SHORT_NAME != null">
+                SHORT_NAME,
+            </if>
+            <if test="DOOR_NO != null">
+                DOOR_NO,
+            </if>
+            <if test="DISTRICT != null">
+                DISTRICT,
+            </if>
+            <if test="CITY != null">
+                CITY,
+            </if>
+            <if test="LNG != null">
+                LNG,
+            </if>
+            <if test="LAT != null">
+                LAT,
+            </if>
+            <if test="INSTALLER_NAME != null">
+                INSTALLER_NAME,
+            </if>
+            <if test="INSTALL_TIME != null">
+                INSTALL_TIME,
+            </if>
+            <if test="FACTORY != null">
+                FACTORY,
+            </if>
+            <if test="VERSION != null">
+                VERSION,
+            </if>
+            <if test="OPERATOR != null">
+                `OPERATOR`,
+            </if>
+            <if test="POSTAL_TYPE != null">
+                POSTAL_TYPE,
+            </if>
+            <if test="MODEL_NUMBER != null">
+                MODEL_NUMBER,
+            </if>
+            <if test="MAC != null">
+                MAC,
+            </if>
+            <if test="SECRET_KEY != null">
+                SECRET_KEY,
+            </if>
+            <if test="SERVER_IP != null">
+                SERVER_IP,
+            </if>
+            <if test="PORT != null">
+                PORT,
+            </if>
+            <if test="IS_IC != null">
+                IS_IC,
+            </if>
+            <if test="IS_PIN != null">
+                IS_PIN,
+            </if>
+            <if test="IS_FINGERPRINT != null">
+                IS_FINGERPRINT,
+            </if>
+            <if test="IS_FACE != null">
+                IS_FACE,
+            </if>
+            <if test="MAX_TIMES != null">
+                MAX_TIMES,
+            </if>
+            <if test="REMAIN_TIMES != null">
+                REMAIN_TIMES,
+            </if>
+            <if test="NOW_TIMES != null">
+                NOW_TIMES,
+            </if>
+            <if test="LAST_OPEN_TIME != null">
+                LAST_OPEN_TIME,
+            </if>
+            <if test="AUTH_USER_NUM != null">
+                AUTH_USER_NUM,
+            </if>
+            <if test="LAST_AUTH_TIME != null">
+                LAST_AUTH_TIME,
+            </if>
+            <if test="SPECIAL_PWD != null">
+                SPECIAL_PWD,
+            </if>
+            <if test="STATUS != null">
+                `STATUS`,
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM,
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION,
+            </if>
+            <if test="CREATOR != null">
+                CREATOR,
+            </if>
+            <if test="CREATE_TIME != null">
+                CREATE_TIME,
+            </if>
+            <if test="UPDATER != null">
+                UPDATER,
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME,
+            </if>
+            <if test="REMARK != null">
+                REMARK,
+            </if>
+            <if test="PRE_DETECTION_TIME != null">
+                PRE_DETECTION_TIME,
+            </if>
+            <if test="NEXT_DETECTION_TIME != null">
+                NEXT_DETECTION_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="COMPANY_CODE != null">
+                #{COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="TRANSACTION_ID != null">
+                #{TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="LOCK_CODE != null">
+                #{LOCK_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="LOCK_NO != null">
+                #{LOCK_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="SHORT_NAME != null">
+                #{SHORT_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="DOOR_NO != null">
+                #{DOOR_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="DISTRICT != null">
+                #{DISTRICT,jdbcType=VARCHAR},
+            </if>
+            <if test="CITY != null">
+                #{CITY,jdbcType=VARCHAR},
+            </if>
+            <if test="LNG != null">
+                #{LNG,jdbcType=DECIMAL},
+            </if>
+            <if test="LAT != null">
+                #{LAT,jdbcType=DECIMAL},
+            </if>
+            <if test="INSTALLER_NAME != null">
+                #{INSTALLER_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="INSTALL_TIME != null">
+                #{INSTALL_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="FACTORY != null">
+                #{FACTORY,jdbcType=VARCHAR},
+            </if>
+            <if test="VERSION != null">
+                #{VERSION,jdbcType=VARCHAR},
+            </if>
+            <if test="OPERATOR != null">
+                #{OPERATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="POSTAL_TYPE != null">
+                #{POSTAL_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="MODEL_NUMBER != null">
+                #{MODEL_NUMBER,jdbcType=VARCHAR},
+            </if>
+            <if test="MAC != null">
+                #{MAC,jdbcType=VARCHAR},
+            </if>
+            <if test="SECRET_KEY != null">
+                #{SECRET_KEY,jdbcType=VARCHAR},
+            </if>
+            <if test="SERVER_IP != null">
+                #{SERVER_IP,jdbcType=VARCHAR},
+            </if>
+            <if test="PORT != null">
+                #{PORT,jdbcType=VARCHAR},
+            </if>
+            <if test="IS_IC != null">
+                #{IS_IC,jdbcType=BIT},
+            </if>
+            <if test="IS_PIN != null">
+                #{IS_PIN,jdbcType=BIT},
+            </if>
+            <if test="IS_FINGERPRINT != null">
+                #{IS_FINGERPRINT,jdbcType=BIT},
+            </if>
+            <if test="IS_FACE != null">
+                #{IS_FACE,jdbcType=BIT},
+            </if>
+            <if test="MAX_TIMES != null">
+                #{MAX_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="REMAIN_TIMES != null">
+                #{REMAIN_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="NOW_TIMES != null">
+                #{NOW_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="LAST_OPEN_TIME != null">
+                #{LAST_OPEN_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="AUTH_USER_NUM != null">
+                #{AUTH_USER_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="LAST_AUTH_TIME != null">
+                #{LAST_AUTH_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="SPECIAL_PWD != null">
+                #{SPECIAL_PWD,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CREATE_TIME != null">
+                #{CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATER != null">
+                #{UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="REMARK != null">
+                #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="PRE_DETECTION_TIME != null">
+                #{PRE_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="NEXT_DETECTION_TIME != null">
+                #{NEXT_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="cn.zciel.model.TpoLockExample" resultType="java.lang.Long">
+        select count(*) from tpo_lock
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tpo_lock
+        <set>
+            <if test="record.ID != null">
+                ID = #{record.ID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.COMPANY_CODE != null">
+                COMPANY_CODE = #{record.COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.TRANSACTION_ID != null">
+                TRANSACTION_ID = #{record.TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.LOCK_CODE != null">
+                LOCK_CODE = #{record.LOCK_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.LOCK_NO != null">
+                LOCK_NO = #{record.LOCK_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SHORT_NAME != null">
+                SHORT_NAME = #{record.SHORT_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="record.DOOR_NO != null">
+                DOOR_NO = #{record.DOOR_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="record.DISTRICT != null">
+                DISTRICT = #{record.DISTRICT,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CITY != null">
+                CITY = #{record.CITY,jdbcType=VARCHAR},
+            </if>
+            <if test="record.LNG != null">
+                LNG = #{record.LNG,jdbcType=DECIMAL},
+            </if>
+            <if test="record.LAT != null">
+                LAT = #{record.LAT,jdbcType=DECIMAL},
+            </if>
+            <if test="record.INSTALLER_NAME != null">
+                INSTALLER_NAME = #{record.INSTALLER_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="record.INSTALL_TIME != null">
+                INSTALL_TIME = #{record.INSTALL_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.FACTORY != null">
+                FACTORY = #{record.FACTORY,jdbcType=VARCHAR},
+            </if>
+            <if test="record.VERSION != null">
+                VERSION = #{record.VERSION,jdbcType=VARCHAR},
+            </if>
+            <if test="record.OPERATOR != null">
+                `OPERATOR` = #{record.OPERATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.POSTAL_TYPE != null">
+                POSTAL_TYPE = #{record.POSTAL_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.MODEL_NUMBER != null">
+                MODEL_NUMBER = #{record.MODEL_NUMBER,jdbcType=VARCHAR},
+            </if>
+            <if test="record.MAC != null">
+                MAC = #{record.MAC,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SECRET_KEY != null">
+                SECRET_KEY = #{record.SECRET_KEY,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SERVER_IP != null">
+                SERVER_IP = #{record.SERVER_IP,jdbcType=VARCHAR},
+            </if>
+            <if test="record.PORT != null">
+                PORT = #{record.PORT,jdbcType=VARCHAR},
+            </if>
+            <if test="record.IS_IC != null">
+                IS_IC = #{record.IS_IC,jdbcType=BIT},
+            </if>
+            <if test="record.IS_PIN != null">
+                IS_PIN = #{record.IS_PIN,jdbcType=BIT},
+            </if>
+            <if test="record.IS_FINGERPRINT != null">
+                IS_FINGERPRINT = #{record.IS_FINGERPRINT,jdbcType=BIT},
+            </if>
+            <if test="record.IS_FACE != null">
+                IS_FACE = #{record.IS_FACE,jdbcType=BIT},
+            </if>
+            <if test="record.MAX_TIMES != null">
+                MAX_TIMES = #{record.MAX_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="record.REMAIN_TIMES != null">
+                REMAIN_TIMES = #{record.REMAIN_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="record.NOW_TIMES != null">
+                NOW_TIMES = #{record.NOW_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="record.LAST_OPEN_TIME != null">
+                LAST_OPEN_TIME = #{record.LAST_OPEN_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.AUTH_USER_NUM != null">
+                AUTH_USER_NUM = #{record.AUTH_USER_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="record.LAST_AUTH_TIME != null">
+                LAST_AUTH_TIME = #{record.LAST_AUTH_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.SPECIAL_PWD != null">
+                SPECIAL_PWD = #{record.SPECIAL_PWD,jdbcType=VARCHAR},
+            </if>
+            <if test="record.STATUS != null">
+                `STATUS` = #{record.STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SORT_NUM != null">
+                SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="record.DATA_VERSION != null">
+                DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="record.CREATOR != null">
+                CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CREATE_TIME != null">
+                CREATE_TIME = #{record.CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.UPDATER != null">
+                UPDATER = #{record.UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="record.UPDATE_TIME != null">
+                UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.REMARK != null">
+                REMARK = #{record.REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="record.PRE_DETECTION_TIME != null">
+                PRE_DETECTION_TIME = #{record.PRE_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.NEXT_DETECTION_TIME != null">
+                NEXT_DETECTION_TIME = #{record.NEXT_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tpo_lock
+        set ID = #{record.ID,jdbcType=VARCHAR},
+        COMPANY_CODE = #{record.COMPANY_CODE,jdbcType=VARCHAR},
+        TRANSACTION_ID = #{record.TRANSACTION_ID,jdbcType=VARCHAR},
+        LOCK_CODE = #{record.LOCK_CODE,jdbcType=VARCHAR},
+        LOCK_NO = #{record.LOCK_NO,jdbcType=VARCHAR},
+        SHORT_NAME = #{record.SHORT_NAME,jdbcType=VARCHAR},
+        DOOR_NO = #{record.DOOR_NO,jdbcType=VARCHAR},
+        DISTRICT = #{record.DISTRICT,jdbcType=VARCHAR},
+        CITY = #{record.CITY,jdbcType=VARCHAR},
+        LNG = #{record.LNG,jdbcType=DECIMAL},
+        LAT = #{record.LAT,jdbcType=DECIMAL},
+        INSTALLER_NAME = #{record.INSTALLER_NAME,jdbcType=VARCHAR},
+        INSTALL_TIME = #{record.INSTALL_TIME,jdbcType=TIMESTAMP},
+        FACTORY = #{record.FACTORY,jdbcType=VARCHAR},
+        VERSION = #{record.VERSION,jdbcType=VARCHAR},
+        `OPERATOR` = #{record.OPERATOR,jdbcType=VARCHAR},
+        POSTAL_TYPE = #{record.POSTAL_TYPE,jdbcType=VARCHAR},
+        MODEL_NUMBER = #{record.MODEL_NUMBER,jdbcType=VARCHAR},
+        MAC = #{record.MAC,jdbcType=VARCHAR},
+        SECRET_KEY = #{record.SECRET_KEY,jdbcType=VARCHAR},
+        SERVER_IP = #{record.SERVER_IP,jdbcType=VARCHAR},
+        PORT = #{record.PORT,jdbcType=VARCHAR},
+        IS_IC = #{record.IS_IC,jdbcType=BIT},
+        IS_PIN = #{record.IS_PIN,jdbcType=BIT},
+        IS_FINGERPRINT = #{record.IS_FINGERPRINT,jdbcType=BIT},
+        IS_FACE = #{record.IS_FACE,jdbcType=BIT},
+        MAX_TIMES = #{record.MAX_TIMES,jdbcType=DECIMAL},
+        REMAIN_TIMES = #{record.REMAIN_TIMES,jdbcType=DECIMAL},
+        NOW_TIMES = #{record.NOW_TIMES,jdbcType=DECIMAL},
+        LAST_OPEN_TIME = #{record.LAST_OPEN_TIME,jdbcType=TIMESTAMP},
+        AUTH_USER_NUM = #{record.AUTH_USER_NUM,jdbcType=DECIMAL},
+        LAST_AUTH_TIME = #{record.LAST_AUTH_TIME,jdbcType=TIMESTAMP},
+        SPECIAL_PWD = #{record.SPECIAL_PWD,jdbcType=VARCHAR},
+        `STATUS` = #{record.STATUS,jdbcType=VARCHAR},
+        SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+        DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+        CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+        CREATE_TIME = #{record.CREATE_TIME,jdbcType=TIMESTAMP},
+        UPDATER = #{record.UPDATER,jdbcType=VARCHAR},
+        UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+        REMARK = #{record.REMARK,jdbcType=VARCHAR},
+        PRE_DETECTION_TIME = #{record.PRE_DETECTION_TIME,jdbcType=TIMESTAMP},
+        NEXT_DETECTION_TIME = #{record.NEXT_DETECTION_TIME,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.zciel.model.TpoLock">
+        update tpo_lock
+        <set>
+            <if test="COMPANY_CODE != null">
+                COMPANY_CODE = #{COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="TRANSACTION_ID != null">
+                TRANSACTION_ID = #{TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="LOCK_CODE != null">
+                LOCK_CODE = #{LOCK_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="LOCK_NO != null">
+                LOCK_NO = #{LOCK_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="SHORT_NAME != null">
+                SHORT_NAME = #{SHORT_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="DOOR_NO != null">
+                DOOR_NO = #{DOOR_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="DISTRICT != null">
+                DISTRICT = #{DISTRICT,jdbcType=VARCHAR},
+            </if>
+            <if test="CITY != null">
+                CITY = #{CITY,jdbcType=VARCHAR},
+            </if>
+            <if test="LNG != null">
+                LNG = #{LNG,jdbcType=DECIMAL},
+            </if>
+            <if test="LAT != null">
+                LAT = #{LAT,jdbcType=DECIMAL},
+            </if>
+            <if test="INSTALLER_NAME != null">
+                INSTALLER_NAME = #{INSTALLER_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="INSTALL_TIME != null">
+                INSTALL_TIME = #{INSTALL_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="FACTORY != null">
+                FACTORY = #{FACTORY,jdbcType=VARCHAR},
+            </if>
+            <if test="VERSION != null">
+                VERSION = #{VERSION,jdbcType=VARCHAR},
+            </if>
+            <if test="OPERATOR != null">
+                `OPERATOR` = #{OPERATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="POSTAL_TYPE != null">
+                POSTAL_TYPE = #{POSTAL_TYPE,jdbcType=VARCHAR},
+            </if>
+            <if test="MODEL_NUMBER != null">
+                MODEL_NUMBER = #{MODEL_NUMBER,jdbcType=VARCHAR},
+            </if>
+            <if test="MAC != null">
+                MAC = #{MAC,jdbcType=VARCHAR},
+            </if>
+            <if test="SECRET_KEY != null">
+                SECRET_KEY = #{SECRET_KEY,jdbcType=VARCHAR},
+            </if>
+            <if test="SERVER_IP != null">
+                SERVER_IP = #{SERVER_IP,jdbcType=VARCHAR},
+            </if>
+            <if test="PORT != null">
+                PORT = #{PORT,jdbcType=VARCHAR},
+            </if>
+            <if test="IS_IC != null">
+                IS_IC = #{IS_IC,jdbcType=BIT},
+            </if>
+            <if test="IS_PIN != null">
+                IS_PIN = #{IS_PIN,jdbcType=BIT},
+            </if>
+            <if test="IS_FINGERPRINT != null">
+                IS_FINGERPRINT = #{IS_FINGERPRINT,jdbcType=BIT},
+            </if>
+            <if test="IS_FACE != null">
+                IS_FACE = #{IS_FACE,jdbcType=BIT},
+            </if>
+            <if test="MAX_TIMES != null">
+                MAX_TIMES = #{MAX_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="REMAIN_TIMES != null">
+                REMAIN_TIMES = #{REMAIN_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="NOW_TIMES != null">
+                NOW_TIMES = #{NOW_TIMES,jdbcType=DECIMAL},
+            </if>
+            <if test="LAST_OPEN_TIME != null">
+                LAST_OPEN_TIME = #{LAST_OPEN_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="AUTH_USER_NUM != null">
+                AUTH_USER_NUM = #{AUTH_USER_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="LAST_AUTH_TIME != null">
+                LAST_AUTH_TIME = #{LAST_AUTH_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="SPECIAL_PWD != null">
+                SPECIAL_PWD = #{SPECIAL_PWD,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                `STATUS` = #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                CREATOR = #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CREATE_TIME != null">
+                CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATER != null">
+                UPDATER = #{UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="REMARK != null">
+                REMARK = #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="PRE_DETECTION_TIME != null">
+                PRE_DETECTION_TIME = #{PRE_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="NEXT_DETECTION_TIME != null">
+                NEXT_DETECTION_TIME = #{NEXT_DETECTION_TIME,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.zciel.model.TpoLock">
+    update tpo_lock
+    set COMPANY_CODE = #{COMPANY_CODE,jdbcType=VARCHAR},
+      TRANSACTION_ID = #{TRANSACTION_ID,jdbcType=VARCHAR},
+      LOCK_CODE = #{LOCK_CODE,jdbcType=VARCHAR},
+      LOCK_NO = #{LOCK_NO,jdbcType=VARCHAR},
+      SHORT_NAME = #{SHORT_NAME,jdbcType=VARCHAR},
+      DOOR_NO = #{DOOR_NO,jdbcType=VARCHAR},
+      DISTRICT = #{DISTRICT,jdbcType=VARCHAR},
+      CITY = #{CITY,jdbcType=VARCHAR},
+      LNG = #{LNG,jdbcType=DECIMAL},
+      LAT = #{LAT,jdbcType=DECIMAL},
+      INSTALLER_NAME = #{INSTALLER_NAME,jdbcType=VARCHAR},
+      INSTALL_TIME = #{INSTALL_TIME,jdbcType=TIMESTAMP},
+      FACTORY = #{FACTORY,jdbcType=VARCHAR},
+      VERSION = #{VERSION,jdbcType=VARCHAR},
+      `OPERATOR` = #{OPERATOR,jdbcType=VARCHAR},
+      POSTAL_TYPE = #{POSTAL_TYPE,jdbcType=VARCHAR},
+      MODEL_NUMBER = #{MODEL_NUMBER,jdbcType=VARCHAR},
+      MAC = #{MAC,jdbcType=VARCHAR},
+      SECRET_KEY = #{SECRET_KEY,jdbcType=VARCHAR},
+      SERVER_IP = #{SERVER_IP,jdbcType=VARCHAR},
+      PORT = #{PORT,jdbcType=VARCHAR},
+      IS_IC = #{IS_IC,jdbcType=BIT},
+      IS_PIN = #{IS_PIN,jdbcType=BIT},
+      IS_FINGERPRINT = #{IS_FINGERPRINT,jdbcType=BIT},
+      IS_FACE = #{IS_FACE,jdbcType=BIT},
+      MAX_TIMES = #{MAX_TIMES,jdbcType=DECIMAL},
+      REMAIN_TIMES = #{REMAIN_TIMES,jdbcType=DECIMAL},
+      NOW_TIMES = #{NOW_TIMES,jdbcType=DECIMAL},
+      LAST_OPEN_TIME = #{LAST_OPEN_TIME,jdbcType=TIMESTAMP},
+      AUTH_USER_NUM = #{AUTH_USER_NUM,jdbcType=DECIMAL},
+      LAST_AUTH_TIME = #{LAST_AUTH_TIME,jdbcType=TIMESTAMP},
+      SPECIAL_PWD = #{SPECIAL_PWD,jdbcType=VARCHAR},
+      `STATUS` = #{STATUS,jdbcType=VARCHAR},
+      SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+      DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+      CREATOR = #{CREATOR,jdbcType=VARCHAR},
+      CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      UPDATER = #{UPDATER,jdbcType=VARCHAR},
+      UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      PRE_DETECTION_TIME = #{PRE_DETECTION_TIME,jdbcType=TIMESTAMP},
+      NEXT_DETECTION_TIME = #{NEXT_DETECTION_TIME,jdbcType=TIMESTAMP}
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

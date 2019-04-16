@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zciel.mapper.TpoLockTenantDAO">
+    <resultMap id="BaseResultMap" type="cn.zciel.model.TpoLockTenant">
+        <id column="ID" jdbcType="VARCHAR" property="ID"/>
+        <result column="TRANSACTION_ID" jdbcType="VARCHAR" property="TRANSACTION_ID"/>
+        <result column="REAL_NAME" jdbcType="VARCHAR" property="REAL_NAME"/>
+        <result column="MOBILE" jdbcType="VARCHAR" property="MOBILE"/>
+        <result column="ID_NO" jdbcType="VARCHAR" property="ID_NO"/>
+        <result column="ID_DN" jdbcType="VARCHAR" property="ID_DN"/>
+        <result column="GENDER" jdbcType="CHAR" property="GENDER"/>
+        <result column="AVATAR" jdbcType="VARCHAR" property="AVATAR"/>
+        <result column="STATUS" jdbcType="VARCHAR" property="STATUS"/>
+        <result column="SORT_NUM" jdbcType="DECIMAL" property="SORT_NUM"/>
+        <result column="DATA_VERSION" jdbcType="DECIMAL" property="DATA_VERSION"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="CREATOR"/>
+        <result column="CRETE_TIME" jdbcType="TIMESTAMP" property="CRETE_TIME"/>
+        <result column="UPDATER" jdbcType="VARCHAR" property="UPDATER"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="UPDATE_TIME"/>
+        <result column="REMARK" jdbcType="VARCHAR" property="REMARK"/>
+        <result column="COMPANY_CODE" jdbcType="VARCHAR" property="COMPANY_CODE"/>
+        <result column="OUT_MEMBER_ID" jdbcType="VARCHAR" property="OUT_MEMBER_ID"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, TRANSACTION_ID, REAL_NAME, MOBILE, ID_NO, ID_DN, GENDER, AVATAR, `STATUS`, SORT_NUM,
+    DATA_VERSION, CREATOR, CRETE_TIME, UPDATER, UPDATE_TIME, REMARK, COMPANY_CODE, OUT_MEMBER_ID
+  </sql>
+    <select id="selectByExample" parameterType="cn.zciel.model.TpoLockTenantExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tpo_lock_tenant
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+        <if test="forUpdate != null and forUpdate == true">
+            for update
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tpo_lock_tenant
+        where ID = #{ID,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpo_lock_tenant
+    where ID = #{ID,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="cn.zciel.model.TpoLockTenantExample">
+        delete from tpo_lock_tenant
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoLockTenant"
+            useGeneratedKeys="true">
+    insert into tpo_lock_tenant (TRANSACTION_ID, REAL_NAME, MOBILE,
+      ID_NO, ID_DN, GENDER,
+      AVATAR, `STATUS`, SORT_NUM,
+      DATA_VERSION, CREATOR, CRETE_TIME,
+      UPDATER, UPDATE_TIME, REMARK,
+      COMPANY_CODE, OUT_MEMBER_ID)
+    values (#{TRANSACTION_ID,jdbcType=VARCHAR}, #{REAL_NAME,jdbcType=VARCHAR}, #{MOBILE,jdbcType=VARCHAR},
+      #{ID_NO,jdbcType=VARCHAR}, #{ID_DN,jdbcType=VARCHAR}, #{GENDER,jdbcType=CHAR},
+      #{AVATAR,jdbcType=VARCHAR}, #{STATUS,jdbcType=VARCHAR}, #{SORT_NUM,jdbcType=DECIMAL},
+      #{DATA_VERSION,jdbcType=DECIMAL}, #{CREATOR,jdbcType=VARCHAR}, #{CRETE_TIME,jdbcType=TIMESTAMP},
+      #{UPDATER,jdbcType=VARCHAR}, #{UPDATE_TIME,jdbcType=TIMESTAMP}, #{REMARK,jdbcType=VARCHAR},
+      #{COMPANY_CODE,jdbcType=VARCHAR}, #{OUT_MEMBER_ID,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoLockTenant"
+            useGeneratedKeys="true">
+        insert into tpo_lock_tenant
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="TRANSACTION_ID != null">
+                TRANSACTION_ID,
+            </if>
+            <if test="REAL_NAME != null">
+                REAL_NAME,
+            </if>
+            <if test="MOBILE != null">
+                MOBILE,
+            </if>
+            <if test="ID_NO != null">
+                ID_NO,
+            </if>
+            <if test="ID_DN != null">
+                ID_DN,
+            </if>
+            <if test="GENDER != null">
+                GENDER,
+            </if>
+            <if test="AVATAR != null">
+                AVATAR,
+            </if>
+            <if test="STATUS != null">
+                `STATUS`,
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM,
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION,
+            </if>
+            <if test="CREATOR != null">
+                CREATOR,
+            </if>
+            <if test="CRETE_TIME != null">
+                CRETE_TIME,
+            </if>
+            <if test="UPDATER != null">
+                UPDATER,
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME,
+            </if>
+            <if test="REMARK != null">
+                REMARK,
+            </if>
+            <if test="COMPANY_CODE != null">
+                COMPANY_CODE,
+            </if>
+            <if test="OUT_MEMBER_ID != null">
+                OUT_MEMBER_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="TRANSACTION_ID != null">
+                #{TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="REAL_NAME != null">
+                #{REAL_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="MOBILE != null">
+                #{MOBILE,jdbcType=VARCHAR},
+            </if>
+            <if test="ID_NO != null">
+                #{ID_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="ID_DN != null">
+                #{ID_DN,jdbcType=VARCHAR},
+            </if>
+            <if test="GENDER != null">
+                #{GENDER,jdbcType=CHAR},
+            </if>
+            <if test="AVATAR != null">
+                #{AVATAR,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CRETE_TIME != null">
+                #{CRETE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATER != null">
+                #{UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="REMARK != null">
+                #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="COMPANY_CODE != null">
+                #{COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="OUT_MEMBER_ID != null">
+                #{OUT_MEMBER_ID,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="cn.zciel.model.TpoLockTenantExample" resultType="java.lang.Long">
+        select count(*) from tpo_lock_tenant
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tpo_lock_tenant
+        <set>
+            <if test="record.ID != null">
+                ID = #{record.ID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.TRANSACTION_ID != null">
+                TRANSACTION_ID = #{record.TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.REAL_NAME != null">
+                REAL_NAME = #{record.REAL_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="record.MOBILE != null">
+                MOBILE = #{record.MOBILE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ID_NO != null">
+                ID_NO = #{record.ID_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ID_DN != null">
+                ID_DN = #{record.ID_DN,jdbcType=VARCHAR},
+            </if>
+            <if test="record.GENDER != null">
+                GENDER = #{record.GENDER,jdbcType=CHAR},
+            </if>
+            <if test="record.AVATAR != null">
+                AVATAR = #{record.AVATAR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.STATUS != null">
+                `STATUS` = #{record.STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SORT_NUM != null">
+                SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="record.DATA_VERSION != null">
+                DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="record.CREATOR != null">
+                CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CRETE_TIME != null">
+                CRETE_TIME = #{record.CRETE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.UPDATER != null">
+                UPDATER = #{record.UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="record.UPDATE_TIME != null">
+                UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.REMARK != null">
+                REMARK = #{record.REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="record.COMPANY_CODE != null">
+                COMPANY_CODE = #{record.COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.OUT_MEMBER_ID != null">
+                OUT_MEMBER_ID = #{record.OUT_MEMBER_ID,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tpo_lock_tenant
+        set ID = #{record.ID,jdbcType=VARCHAR},
+        TRANSACTION_ID = #{record.TRANSACTION_ID,jdbcType=VARCHAR},
+        REAL_NAME = #{record.REAL_NAME,jdbcType=VARCHAR},
+        MOBILE = #{record.MOBILE,jdbcType=VARCHAR},
+        ID_NO = #{record.ID_NO,jdbcType=VARCHAR},
+        ID_DN = #{record.ID_DN,jdbcType=VARCHAR},
+        GENDER = #{record.GENDER,jdbcType=CHAR},
+        AVATAR = #{record.AVATAR,jdbcType=VARCHAR},
+        `STATUS` = #{record.STATUS,jdbcType=VARCHAR},
+        SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+        DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+        CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+        CRETE_TIME = #{record.CRETE_TIME,jdbcType=TIMESTAMP},
+        UPDATER = #{record.UPDATER,jdbcType=VARCHAR},
+        UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+        REMARK = #{record.REMARK,jdbcType=VARCHAR},
+        COMPANY_CODE = #{record.COMPANY_CODE,jdbcType=VARCHAR},
+        OUT_MEMBER_ID = #{record.OUT_MEMBER_ID,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.zciel.model.TpoLockTenant">
+        update tpo_lock_tenant
+        <set>
+            <if test="TRANSACTION_ID != null">
+                TRANSACTION_ID = #{TRANSACTION_ID,jdbcType=VARCHAR},
+            </if>
+            <if test="REAL_NAME != null">
+                REAL_NAME = #{REAL_NAME,jdbcType=VARCHAR},
+            </if>
+            <if test="MOBILE != null">
+                MOBILE = #{MOBILE,jdbcType=VARCHAR},
+            </if>
+            <if test="ID_NO != null">
+                ID_NO = #{ID_NO,jdbcType=VARCHAR},
+            </if>
+            <if test="ID_DN != null">
+                ID_DN = #{ID_DN,jdbcType=VARCHAR},
+            </if>
+            <if test="GENDER != null">
+                GENDER = #{GENDER,jdbcType=CHAR},
+            </if>
+            <if test="AVATAR != null">
+                AVATAR = #{AVATAR,jdbcType=VARCHAR},
+            </if>
+            <if test="STATUS != null">
+                `STATUS` = #{STATUS,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                CREATOR = #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CRETE_TIME != null">
+                CRETE_TIME = #{CRETE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATER != null">
+                UPDATER = #{UPDATER,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="REMARK != null">
+                REMARK = #{REMARK,jdbcType=VARCHAR},
+            </if>
+            <if test="COMPANY_CODE != null">
+                COMPANY_CODE = #{COMPANY_CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="OUT_MEMBER_ID != null">
+                OUT_MEMBER_ID = #{OUT_MEMBER_ID,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.zciel.model.TpoLockTenant">
+    update tpo_lock_tenant
+    set TRANSACTION_ID = #{TRANSACTION_ID,jdbcType=VARCHAR},
+      REAL_NAME = #{REAL_NAME,jdbcType=VARCHAR},
+      MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      ID_NO = #{ID_NO,jdbcType=VARCHAR},
+      ID_DN = #{ID_DN,jdbcType=VARCHAR},
+      GENDER = #{GENDER,jdbcType=CHAR},
+      AVATAR = #{AVATAR,jdbcType=VARCHAR},
+      `STATUS` = #{STATUS,jdbcType=VARCHAR},
+      SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+      DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+      CREATOR = #{CREATOR,jdbcType=VARCHAR},
+      CRETE_TIME = #{CRETE_TIME,jdbcType=TIMESTAMP},
+      UPDATER = #{UPDATER,jdbcType=VARCHAR},
+      UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      COMPANY_CODE = #{COMPANY_CODE,jdbcType=VARCHAR},
+      OUT_MEMBER_ID = #{OUT_MEMBER_ID,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+</mapper>

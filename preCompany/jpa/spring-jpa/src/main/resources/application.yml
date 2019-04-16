@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    name: mysql_test
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid�������
+    druid:
+      #���ͳ�����ص�filters
+      filters: stat
+      driver-class-name: com.mysql.jdbc.Driver
+      #��������
+      url: jdbc:mysql://122.152.192.126:3306/zciel_zlyy?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      #���ó�ʼ����С/��С/���
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #��ȡ���ӵȴ���ʱʱ��
+      max-wait: 60000
+      #�����ý���һ�μ�⣬�����Ҫ�رյĿ�������
+      time-between-eviction-runs-millis: 60000
+      #һ�������ڳ�����С�����ʱ��
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      #��PSCache����ָ��ÿ��������PSCache�Ĵ�С��oracle��Ϊtrue��mysql��Ϊfalse���ֿ�ֱ�϶��Ƽ�����Ϊfalse
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+
+
+# Naming strategy
+#[org.hibernate.cfg.ImprovedNamingStrategy              #org.hibernate.cfg.DefaultNamingStrategy]
+#spring.jpa.hibernate.naming-strategy = org.hibernate.cfg.ImprovedNamingStrategy
+## stripped before adding them to the entity manager)
+#spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect

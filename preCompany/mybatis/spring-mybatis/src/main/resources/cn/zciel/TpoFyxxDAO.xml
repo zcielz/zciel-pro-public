@@ -1,0 +1,1192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zciel.mapper.TpoFyxxDAO">
+    <resultMap id="BaseResultMap" type="cn.zciel.model.TpoFyxx">
+        <id column="ID" jdbcType="VARCHAR" property="ID"/>
+        <result column="FID" jdbcType="VARCHAR" property="FID"/>
+        <result column="CODE" jdbcType="VARCHAR" property="CODE"/>
+        <result column="FWID" jdbcType="VARCHAR" property="FWID"/>
+        <result column="FWCODE" jdbcType="VARCHAR" property="FWCODE"/>
+        <result column="BDCDYDM" jdbcType="VARCHAR" property="BDCDYDM"/>
+        <result column="YZDZ" jdbcType="VARCHAR" property="YZDZ"/>
+        <result column="FWZL" jdbcType="VARCHAR" property="FWZL"/>
+        <result column="FWXZ" jdbcType="VARCHAR" property="FWXZ"/>
+        <result column="TDDJ" jdbcType="VARCHAR" property="TDDJ"/>
+        <result column="CQZH" jdbcType="VARCHAR" property="CQZH"/>
+        <result column="CQDW" jdbcType="VARCHAR" property="CQDW"/>
+        <result column="HX" jdbcType="VARCHAR" property="HX"/>
+        <result column="FPFS" jdbcType="VARCHAR" property="FPFS"/>
+        <result column="FWFPZT" jdbcType="VARCHAR" property="FWFPZT"/>
+        <result column="SCPZSJ" jdbcType="TIMESTAMP" property="SCPZSJ"/>
+        <result column="CCPZSJ" jdbcType="TIMESTAMP" property="CCPZSJ"/>
+        <result column="LJSYSJ" jdbcType="DECIMAL" property="LJSYSJ"/>
+        <result column="ZCS" jdbcType="DECIMAL" property="ZCS"/>
+        <result column="SZCS" jdbcType="VARCHAR" property="SZCS"/>
+        <result column="FWJG" jdbcType="VARCHAR" property="FWJG"/>
+        <result column="JZMJ" jdbcType="DECIMAL" property="JZMJ"/>
+        <result column="TNJZMJ" jdbcType="DECIMAL" property="TNJZMJ"/>
+        <result column="FTGGMJ" jdbcType="DECIMAL" property="FTGGMJ"/>
+        <result column="SYMJ" jdbcType="DECIMAL" property="SYMJ"/>
+        <result column="JGSJ" jdbcType="TIMESTAMP" property="JGSJ"/>
+        <result column="JSSJ" jdbcType="TIMESTAMP" property="JSSJ"/>
+        <result column="KPZZHS" jdbcType="DECIMAL" property="KPZZHS"/>
+        <result column="YPZHS" jdbcType="DECIMAL" property="YPZHS"/>
+        <result column="FH" jdbcType="VARCHAR" property="FH"/>
+        <result column="DYID" jdbcType="VARCHAR" property="DYID"/>
+        <result column="DYH" jdbcType="VARCHAR" property="DYH"/>
+        <result column="FWLX" jdbcType="VARCHAR" property="FWLX"/>
+        <result column="ZRZID" jdbcType="VARCHAR" property="ZRZID"/>
+        <result column="ZRZCODE" jdbcType="VARCHAR" property="ZRZCODE"/>
+        <result column="ZH" jdbcType="VARCHAR" property="ZH"/>
+        <result column="DH" jdbcType="VARCHAR" property="DH"/>
+        <result column="SZCQ" jdbcType="VARCHAR" property="SZCQ"/>
+        <result column="BZLX" jdbcType="VARCHAR" property="BZLX"/>
+        <result column="HBPCID" jdbcType="VARCHAR" property="HBPCID"/>
+        <result column="HBSJ" jdbcType="TIMESTAMP" property="HBSJ"/>
+        <result column="HBR" jdbcType="VARCHAR" property="HBR"/>
+        <result column="LAYER" jdbcType="DECIMAL" property="LAYER"/>
+        <result column="FWLY" jdbcType="VARCHAR" property="FWLY"/>
+        <result column="BZFYTYBH" jdbcType="VARCHAR" property="BZFYTYBH"/>
+        <result column="BZXMTYBH" jdbcType="VARCHAR" property="BZXMTYBH"/>
+        <result column="XMID" jdbcType="VARCHAR" property="XMID"/>
+        <result column="XMCODE" jdbcType="VARCHAR" property="XMCODE"/>
+        <result column="XMMC" jdbcType="VARCHAR" property="XMMC"/>
+        <result column="GLJZMJ" jdbcType="DECIMAL" property="GLJZMJ"/>
+        <result column="CCSMJ" jdbcType="DECIMAL" property="CCSMJ"/>
+        <result column="SFCT" jdbcType="DECIMAL" property="SFCT"/>
+        <result column="SFZTZL" jdbcType="DECIMAL" property="SFZTZL"/>
+        <result column="SFNRSJTZ" jdbcType="DECIMAL" property="SFNRSJTZ"/>
+        <result column="SFGDF" jdbcType="DECIMAL" property="SFGDF"/>
+        <result column="SFZGGF" jdbcType="DECIMAL" property="SFZGGF"/>
+        <result column="FWDAH" jdbcType="VARCHAR" property="FWDAH"/>
+        <result column="HFQK" jdbcType="VARCHAR" property="HFQK"/>
+        <result column="SORT_NUM" jdbcType="DECIMAL" property="SORT_NUM"/>
+        <result column="DATA_VERSION" jdbcType="DECIMAL" property="DATA_VERSION"/>
+        <result column="CREATOR" jdbcType="VARCHAR" property="CREATOR"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="CREATE_TIME"/>
+        <result column="ZZSJ" jdbcType="TIMESTAMP" property="ZZSJ"/>
+        <result column="UPDATOR" jdbcType="VARCHAR" property="UPDATOR"/>
+        <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="UPDATE_TIME"/>
+        <result column="YXBZ" jdbcType="DECIMAL" property="YXBZ"/>
+        <result column="COMMENTS" jdbcType="VARCHAR" property="COMMENTS"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    ID, FID, CODE, FWID, FWCODE, BDCDYDM, YZDZ, FWZL, FWXZ, TDDJ, CQZH, CQDW, HX, FPFS,
+    FWFPZT, SCPZSJ, CCPZSJ, LJSYSJ, ZCS, SZCS, FWJG, JZMJ, TNJZMJ, FTGGMJ, SYMJ, JGSJ,
+    JSSJ, KPZZHS, YPZHS, FH, DYID, DYH, FWLX, ZRZID, ZRZCODE, ZH, DH, SZCQ, BZLX, HBPCID,
+    HBSJ, HBR, LAYER, FWLY, BZFYTYBH, BZXMTYBH, XMID, XMCODE, XMMC, GLJZMJ, CCSMJ, SFCT,
+    SFZTZL, SFNRSJTZ, SFGDF, SFZGGF, FWDAH, HFQK, SORT_NUM, DATA_VERSION, CREATOR, CREATE_TIME,
+    ZZSJ, UPDATOR, UPDATE_TIME, YXBZ, COMMENTS
+  </sql>
+    <select id="selectByExample" parameterType="cn.zciel.model.TpoFyxxExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from tpo_fyxx
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+        <if test="forUpdate != null and forUpdate == true">
+            for update
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tpo_fyxx
+        where ID = #{ID,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tpo_fyxx
+    where ID = #{ID,jdbcType=VARCHAR}
+  </delete>
+    <delete id="deleteByExample" parameterType="cn.zciel.model.TpoFyxxExample">
+        delete from tpo_fyxx
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoFyxx" useGeneratedKeys="true">
+    insert into tpo_fyxx (FID, CODE, FWID,
+      FWCODE, BDCDYDM, YZDZ,
+      FWZL, FWXZ, TDDJ, CQZH,
+      CQDW, HX, FPFS, FWFPZT,
+      SCPZSJ, CCPZSJ, LJSYSJ,
+      ZCS, SZCS, FWJG, JZMJ,
+      TNJZMJ, FTGGMJ, SYMJ,
+      JGSJ, JSSJ, KPZZHS,
+      YPZHS, FH, DYID, DYH,
+      FWLX, ZRZID, ZRZCODE,
+      ZH, DH, SZCQ, BZLX,
+      HBPCID, HBSJ, HBR,
+      LAYER, FWLY, BZFYTYBH,
+      BZXMTYBH, XMID, XMCODE,
+      XMMC, GLJZMJ, CCSMJ,
+      SFCT, SFZTZL, SFNRSJTZ,
+      SFGDF, SFZGGF, FWDAH,
+      HFQK, SORT_NUM, DATA_VERSION,
+      CREATOR, CREATE_TIME, ZZSJ,
+      UPDATOR, UPDATE_TIME, YXBZ,
+      COMMENTS)
+    values (#{FID,jdbcType=VARCHAR}, #{CODE,jdbcType=VARCHAR}, #{FWID,jdbcType=VARCHAR},
+      #{FWCODE,jdbcType=VARCHAR}, #{BDCDYDM,jdbcType=VARCHAR}, #{YZDZ,jdbcType=VARCHAR},
+      #{FWZL,jdbcType=VARCHAR}, #{FWXZ,jdbcType=VARCHAR}, #{TDDJ,jdbcType=VARCHAR}, #{CQZH,jdbcType=VARCHAR},
+      #{CQDW,jdbcType=VARCHAR}, #{HX,jdbcType=VARCHAR}, #{FPFS,jdbcType=VARCHAR}, #{FWFPZT,jdbcType=VARCHAR},
+      #{SCPZSJ,jdbcType=TIMESTAMP}, #{CCPZSJ,jdbcType=TIMESTAMP}, #{LJSYSJ,jdbcType=DECIMAL},
+      #{ZCS,jdbcType=DECIMAL}, #{SZCS,jdbcType=VARCHAR}, #{FWJG,jdbcType=VARCHAR}, #{JZMJ,jdbcType=DECIMAL},
+      #{TNJZMJ,jdbcType=DECIMAL}, #{FTGGMJ,jdbcType=DECIMAL}, #{SYMJ,jdbcType=DECIMAL},
+      #{JGSJ,jdbcType=TIMESTAMP}, #{JSSJ,jdbcType=TIMESTAMP}, #{KPZZHS,jdbcType=DECIMAL},
+      #{YPZHS,jdbcType=DECIMAL}, #{FH,jdbcType=VARCHAR}, #{DYID,jdbcType=VARCHAR}, #{DYH,jdbcType=VARCHAR},
+      #{FWLX,jdbcType=VARCHAR}, #{ZRZID,jdbcType=VARCHAR}, #{ZRZCODE,jdbcType=VARCHAR},
+      #{ZH,jdbcType=VARCHAR}, #{DH,jdbcType=VARCHAR}, #{SZCQ,jdbcType=VARCHAR}, #{BZLX,jdbcType=VARCHAR},
+      #{HBPCID,jdbcType=VARCHAR}, #{HBSJ,jdbcType=TIMESTAMP}, #{HBR,jdbcType=VARCHAR},
+      #{LAYER,jdbcType=DECIMAL}, #{FWLY,jdbcType=VARCHAR}, #{BZFYTYBH,jdbcType=VARCHAR},
+      #{BZXMTYBH,jdbcType=VARCHAR}, #{XMID,jdbcType=VARCHAR}, #{XMCODE,jdbcType=VARCHAR},
+      #{XMMC,jdbcType=VARCHAR}, #{GLJZMJ,jdbcType=DECIMAL}, #{CCSMJ,jdbcType=DECIMAL},
+      #{SFCT,jdbcType=DECIMAL}, #{SFZTZL,jdbcType=DECIMAL}, #{SFNRSJTZ,jdbcType=DECIMAL},
+      #{SFGDF,jdbcType=DECIMAL}, #{SFZGGF,jdbcType=DECIMAL}, #{FWDAH,jdbcType=VARCHAR},
+      #{HFQK,jdbcType=VARCHAR}, #{SORT_NUM,jdbcType=DECIMAL}, #{DATA_VERSION,jdbcType=DECIMAL},
+      #{CREATOR,jdbcType=VARCHAR}, #{CREATE_TIME,jdbcType=TIMESTAMP}, #{ZZSJ,jdbcType=TIMESTAMP},
+      #{UPDATOR,jdbcType=VARCHAR}, #{UPDATE_TIME,jdbcType=TIMESTAMP}, #{YXBZ,jdbcType=DECIMAL},
+      #{COMMENTS,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="ID" parameterType="cn.zciel.model.TpoFyxx"
+            useGeneratedKeys="true">
+        insert into tpo_fyxx
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="FID != null">
+                FID,
+            </if>
+            <if test="CODE != null">
+                CODE,
+            </if>
+            <if test="FWID != null">
+                FWID,
+            </if>
+            <if test="FWCODE != null">
+                FWCODE,
+            </if>
+            <if test="BDCDYDM != null">
+                BDCDYDM,
+            </if>
+            <if test="YZDZ != null">
+                YZDZ,
+            </if>
+            <if test="FWZL != null">
+                FWZL,
+            </if>
+            <if test="FWXZ != null">
+                FWXZ,
+            </if>
+            <if test="TDDJ != null">
+                TDDJ,
+            </if>
+            <if test="CQZH != null">
+                CQZH,
+            </if>
+            <if test="CQDW != null">
+                CQDW,
+            </if>
+            <if test="HX != null">
+                HX,
+            </if>
+            <if test="FPFS != null">
+                FPFS,
+            </if>
+            <if test="FWFPZT != null">
+                FWFPZT,
+            </if>
+            <if test="SCPZSJ != null">
+                SCPZSJ,
+            </if>
+            <if test="CCPZSJ != null">
+                CCPZSJ,
+            </if>
+            <if test="LJSYSJ != null">
+                LJSYSJ,
+            </if>
+            <if test="ZCS != null">
+                ZCS,
+            </if>
+            <if test="SZCS != null">
+                SZCS,
+            </if>
+            <if test="FWJG != null">
+                FWJG,
+            </if>
+            <if test="JZMJ != null">
+                JZMJ,
+            </if>
+            <if test="TNJZMJ != null">
+                TNJZMJ,
+            </if>
+            <if test="FTGGMJ != null">
+                FTGGMJ,
+            </if>
+            <if test="SYMJ != null">
+                SYMJ,
+            </if>
+            <if test="JGSJ != null">
+                JGSJ,
+            </if>
+            <if test="JSSJ != null">
+                JSSJ,
+            </if>
+            <if test="KPZZHS != null">
+                KPZZHS,
+            </if>
+            <if test="YPZHS != null">
+                YPZHS,
+            </if>
+            <if test="FH != null">
+                FH,
+            </if>
+            <if test="DYID != null">
+                DYID,
+            </if>
+            <if test="DYH != null">
+                DYH,
+            </if>
+            <if test="FWLX != null">
+                FWLX,
+            </if>
+            <if test="ZRZID != null">
+                ZRZID,
+            </if>
+            <if test="ZRZCODE != null">
+                ZRZCODE,
+            </if>
+            <if test="ZH != null">
+                ZH,
+            </if>
+            <if test="DH != null">
+                DH,
+            </if>
+            <if test="SZCQ != null">
+                SZCQ,
+            </if>
+            <if test="BZLX != null">
+                BZLX,
+            </if>
+            <if test="HBPCID != null">
+                HBPCID,
+            </if>
+            <if test="HBSJ != null">
+                HBSJ,
+            </if>
+            <if test="HBR != null">
+                HBR,
+            </if>
+            <if test="LAYER != null">
+                LAYER,
+            </if>
+            <if test="FWLY != null">
+                FWLY,
+            </if>
+            <if test="BZFYTYBH != null">
+                BZFYTYBH,
+            </if>
+            <if test="BZXMTYBH != null">
+                BZXMTYBH,
+            </if>
+            <if test="XMID != null">
+                XMID,
+            </if>
+            <if test="XMCODE != null">
+                XMCODE,
+            </if>
+            <if test="XMMC != null">
+                XMMC,
+            </if>
+            <if test="GLJZMJ != null">
+                GLJZMJ,
+            </if>
+            <if test="CCSMJ != null">
+                CCSMJ,
+            </if>
+            <if test="SFCT != null">
+                SFCT,
+            </if>
+            <if test="SFZTZL != null">
+                SFZTZL,
+            </if>
+            <if test="SFNRSJTZ != null">
+                SFNRSJTZ,
+            </if>
+            <if test="SFGDF != null">
+                SFGDF,
+            </if>
+            <if test="SFZGGF != null">
+                SFZGGF,
+            </if>
+            <if test="FWDAH != null">
+                FWDAH,
+            </if>
+            <if test="HFQK != null">
+                HFQK,
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM,
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION,
+            </if>
+            <if test="CREATOR != null">
+                CREATOR,
+            </if>
+            <if test="CREATE_TIME != null">
+                CREATE_TIME,
+            </if>
+            <if test="ZZSJ != null">
+                ZZSJ,
+            </if>
+            <if test="UPDATOR != null">
+                UPDATOR,
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME,
+            </if>
+            <if test="YXBZ != null">
+                YXBZ,
+            </if>
+            <if test="COMMENTS != null">
+                COMMENTS,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="FID != null">
+                #{FID,jdbcType=VARCHAR},
+            </if>
+            <if test="CODE != null">
+                #{CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="FWID != null">
+                #{FWID,jdbcType=VARCHAR},
+            </if>
+            <if test="FWCODE != null">
+                #{FWCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="BDCDYDM != null">
+                #{BDCDYDM,jdbcType=VARCHAR},
+            </if>
+            <if test="YZDZ != null">
+                #{YZDZ,jdbcType=VARCHAR},
+            </if>
+            <if test="FWZL != null">
+                #{FWZL,jdbcType=VARCHAR},
+            </if>
+            <if test="FWXZ != null">
+                #{FWXZ,jdbcType=VARCHAR},
+            </if>
+            <if test="TDDJ != null">
+                #{TDDJ,jdbcType=VARCHAR},
+            </if>
+            <if test="CQZH != null">
+                #{CQZH,jdbcType=VARCHAR},
+            </if>
+            <if test="CQDW != null">
+                #{CQDW,jdbcType=VARCHAR},
+            </if>
+            <if test="HX != null">
+                #{HX,jdbcType=VARCHAR},
+            </if>
+            <if test="FPFS != null">
+                #{FPFS,jdbcType=VARCHAR},
+            </if>
+            <if test="FWFPZT != null">
+                #{FWFPZT,jdbcType=VARCHAR},
+            </if>
+            <if test="SCPZSJ != null">
+                #{SCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="CCPZSJ != null">
+                #{CCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="LJSYSJ != null">
+                #{LJSYSJ,jdbcType=DECIMAL},
+            </if>
+            <if test="ZCS != null">
+                #{ZCS,jdbcType=DECIMAL},
+            </if>
+            <if test="SZCS != null">
+                #{SZCS,jdbcType=VARCHAR},
+            </if>
+            <if test="FWJG != null">
+                #{FWJG,jdbcType=VARCHAR},
+            </if>
+            <if test="JZMJ != null">
+                #{JZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="TNJZMJ != null">
+                #{TNJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="FTGGMJ != null">
+                #{FTGGMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="SYMJ != null">
+                #{SYMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="JGSJ != null">
+                #{JGSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="JSSJ != null">
+                #{JSSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="KPZZHS != null">
+                #{KPZZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="YPZHS != null">
+                #{YPZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="FH != null">
+                #{FH,jdbcType=VARCHAR},
+            </if>
+            <if test="DYID != null">
+                #{DYID,jdbcType=VARCHAR},
+            </if>
+            <if test="DYH != null">
+                #{DYH,jdbcType=VARCHAR},
+            </if>
+            <if test="FWLX != null">
+                #{FWLX,jdbcType=VARCHAR},
+            </if>
+            <if test="ZRZID != null">
+                #{ZRZID,jdbcType=VARCHAR},
+            </if>
+            <if test="ZRZCODE != null">
+                #{ZRZCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="ZH != null">
+                #{ZH,jdbcType=VARCHAR},
+            </if>
+            <if test="DH != null">
+                #{DH,jdbcType=VARCHAR},
+            </if>
+            <if test="SZCQ != null">
+                #{SZCQ,jdbcType=VARCHAR},
+            </if>
+            <if test="BZLX != null">
+                #{BZLX,jdbcType=VARCHAR},
+            </if>
+            <if test="HBPCID != null">
+                #{HBPCID,jdbcType=VARCHAR},
+            </if>
+            <if test="HBSJ != null">
+                #{HBSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="HBR != null">
+                #{HBR,jdbcType=VARCHAR},
+            </if>
+            <if test="LAYER != null">
+                #{LAYER,jdbcType=DECIMAL},
+            </if>
+            <if test="FWLY != null">
+                #{FWLY,jdbcType=VARCHAR},
+            </if>
+            <if test="BZFYTYBH != null">
+                #{BZFYTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="BZXMTYBH != null">
+                #{BZXMTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="XMID != null">
+                #{XMID,jdbcType=VARCHAR},
+            </if>
+            <if test="XMCODE != null">
+                #{XMCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="XMMC != null">
+                #{XMMC,jdbcType=VARCHAR},
+            </if>
+            <if test="GLJZMJ != null">
+                #{GLJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="CCSMJ != null">
+                #{CCSMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="SFCT != null">
+                #{SFCT,jdbcType=DECIMAL},
+            </if>
+            <if test="SFZTZL != null">
+                #{SFZTZL,jdbcType=DECIMAL},
+            </if>
+            <if test="SFNRSJTZ != null">
+                #{SFNRSJTZ,jdbcType=DECIMAL},
+            </if>
+            <if test="SFGDF != null">
+                #{SFGDF,jdbcType=DECIMAL},
+            </if>
+            <if test="SFZGGF != null">
+                #{SFZGGF,jdbcType=DECIMAL},
+            </if>
+            <if test="FWDAH != null">
+                #{FWDAH,jdbcType=VARCHAR},
+            </if>
+            <if test="HFQK != null">
+                #{HFQK,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CREATE_TIME != null">
+                #{CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ZZSJ != null">
+                #{ZZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATOR != null">
+                #{UPDATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="YXBZ != null">
+                #{YXBZ,jdbcType=DECIMAL},
+            </if>
+            <if test="COMMENTS != null">
+                #{COMMENTS,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="cn.zciel.model.TpoFyxxExample" resultType="java.lang.Long">
+        select count(*) from tpo_fyxx
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tpo_fyxx
+        <set>
+            <if test="record.ID != null">
+                ID = #{record.ID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FID != null">
+                FID = #{record.FID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CODE != null">
+                CODE = #{record.CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWID != null">
+                FWID = #{record.FWID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWCODE != null">
+                FWCODE = #{record.FWCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.BDCDYDM != null">
+                BDCDYDM = #{record.BDCDYDM,jdbcType=VARCHAR},
+            </if>
+            <if test="record.YZDZ != null">
+                YZDZ = #{record.YZDZ,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWZL != null">
+                FWZL = #{record.FWZL,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWXZ != null">
+                FWXZ = #{record.FWXZ,jdbcType=VARCHAR},
+            </if>
+            <if test="record.TDDJ != null">
+                TDDJ = #{record.TDDJ,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CQZH != null">
+                CQZH = #{record.CQZH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CQDW != null">
+                CQDW = #{record.CQDW,jdbcType=VARCHAR},
+            </if>
+            <if test="record.HX != null">
+                HX = #{record.HX,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FPFS != null">
+                FPFS = #{record.FPFS,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWFPZT != null">
+                FWFPZT = #{record.FWFPZT,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SCPZSJ != null">
+                SCPZSJ = #{record.SCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.CCPZSJ != null">
+                CCPZSJ = #{record.CCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.LJSYSJ != null">
+                LJSYSJ = #{record.LJSYSJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.ZCS != null">
+                ZCS = #{record.ZCS,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SZCS != null">
+                SZCS = #{record.SZCS,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWJG != null">
+                FWJG = #{record.FWJG,jdbcType=VARCHAR},
+            </if>
+            <if test="record.JZMJ != null">
+                JZMJ = #{record.JZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.TNJZMJ != null">
+                TNJZMJ = #{record.TNJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.FTGGMJ != null">
+                FTGGMJ = #{record.FTGGMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SYMJ != null">
+                SYMJ = #{record.SYMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.JGSJ != null">
+                JGSJ = #{record.JGSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.JSSJ != null">
+                JSSJ = #{record.JSSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.KPZZHS != null">
+                KPZZHS = #{record.KPZZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="record.YPZHS != null">
+                YPZHS = #{record.YPZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="record.FH != null">
+                FH = #{record.FH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.DYID != null">
+                DYID = #{record.DYID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.DYH != null">
+                DYH = #{record.DYH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.FWLX != null">
+                FWLX = #{record.FWLX,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ZRZID != null">
+                ZRZID = #{record.ZRZID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ZRZCODE != null">
+                ZRZCODE = #{record.ZRZCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ZH != null">
+                ZH = #{record.ZH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.DH != null">
+                DH = #{record.DH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SZCQ != null">
+                SZCQ = #{record.SZCQ,jdbcType=VARCHAR},
+            </if>
+            <if test="record.BZLX != null">
+                BZLX = #{record.BZLX,jdbcType=VARCHAR},
+            </if>
+            <if test="record.HBPCID != null">
+                HBPCID = #{record.HBPCID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.HBSJ != null">
+                HBSJ = #{record.HBSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.HBR != null">
+                HBR = #{record.HBR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.LAYER != null">
+                LAYER = #{record.LAYER,jdbcType=DECIMAL},
+            </if>
+            <if test="record.FWLY != null">
+                FWLY = #{record.FWLY,jdbcType=VARCHAR},
+            </if>
+            <if test="record.BZFYTYBH != null">
+                BZFYTYBH = #{record.BZFYTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.BZXMTYBH != null">
+                BZXMTYBH = #{record.BZXMTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.XMID != null">
+                XMID = #{record.XMID,jdbcType=VARCHAR},
+            </if>
+            <if test="record.XMCODE != null">
+                XMCODE = #{record.XMCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="record.XMMC != null">
+                XMMC = #{record.XMMC,jdbcType=VARCHAR},
+            </if>
+            <if test="record.GLJZMJ != null">
+                GLJZMJ = #{record.GLJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.CCSMJ != null">
+                CCSMJ = #{record.CCSMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SFCT != null">
+                SFCT = #{record.SFCT,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SFZTZL != null">
+                SFZTZL = #{record.SFZTZL,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SFNRSJTZ != null">
+                SFNRSJTZ = #{record.SFNRSJTZ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SFGDF != null">
+                SFGDF = #{record.SFGDF,jdbcType=DECIMAL},
+            </if>
+            <if test="record.SFZGGF != null">
+                SFZGGF = #{record.SFZGGF,jdbcType=DECIMAL},
+            </if>
+            <if test="record.FWDAH != null">
+                FWDAH = #{record.FWDAH,jdbcType=VARCHAR},
+            </if>
+            <if test="record.HFQK != null">
+                HFQK = #{record.HFQK,jdbcType=VARCHAR},
+            </if>
+            <if test="record.SORT_NUM != null">
+                SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="record.DATA_VERSION != null">
+                DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="record.CREATOR != null">
+                CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.CREATE_TIME != null">
+                CREATE_TIME = #{record.CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.ZZSJ != null">
+                ZZSJ = #{record.ZZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.UPDATOR != null">
+                UPDATOR = #{record.UPDATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="record.UPDATE_TIME != null">
+                UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.YXBZ != null">
+                YXBZ = #{record.YXBZ,jdbcType=DECIMAL},
+            </if>
+            <if test="record.COMMENTS != null">
+                COMMENTS = #{record.COMMENTS,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tpo_fyxx
+        set ID = #{record.ID,jdbcType=VARCHAR},
+        FID = #{record.FID,jdbcType=VARCHAR},
+        CODE = #{record.CODE,jdbcType=VARCHAR},
+        FWID = #{record.FWID,jdbcType=VARCHAR},
+        FWCODE = #{record.FWCODE,jdbcType=VARCHAR},
+        BDCDYDM = #{record.BDCDYDM,jdbcType=VARCHAR},
+        YZDZ = #{record.YZDZ,jdbcType=VARCHAR},
+        FWZL = #{record.FWZL,jdbcType=VARCHAR},
+        FWXZ = #{record.FWXZ,jdbcType=VARCHAR},
+        TDDJ = #{record.TDDJ,jdbcType=VARCHAR},
+        CQZH = #{record.CQZH,jdbcType=VARCHAR},
+        CQDW = #{record.CQDW,jdbcType=VARCHAR},
+        HX = #{record.HX,jdbcType=VARCHAR},
+        FPFS = #{record.FPFS,jdbcType=VARCHAR},
+        FWFPZT = #{record.FWFPZT,jdbcType=VARCHAR},
+        SCPZSJ = #{record.SCPZSJ,jdbcType=TIMESTAMP},
+        CCPZSJ = #{record.CCPZSJ,jdbcType=TIMESTAMP},
+        LJSYSJ = #{record.LJSYSJ,jdbcType=DECIMAL},
+        ZCS = #{record.ZCS,jdbcType=DECIMAL},
+        SZCS = #{record.SZCS,jdbcType=VARCHAR},
+        FWJG = #{record.FWJG,jdbcType=VARCHAR},
+        JZMJ = #{record.JZMJ,jdbcType=DECIMAL},
+        TNJZMJ = #{record.TNJZMJ,jdbcType=DECIMAL},
+        FTGGMJ = #{record.FTGGMJ,jdbcType=DECIMAL},
+        SYMJ = #{record.SYMJ,jdbcType=DECIMAL},
+        JGSJ = #{record.JGSJ,jdbcType=TIMESTAMP},
+        JSSJ = #{record.JSSJ,jdbcType=TIMESTAMP},
+        KPZZHS = #{record.KPZZHS,jdbcType=DECIMAL},
+        YPZHS = #{record.YPZHS,jdbcType=DECIMAL},
+        FH = #{record.FH,jdbcType=VARCHAR},
+        DYID = #{record.DYID,jdbcType=VARCHAR},
+        DYH = #{record.DYH,jdbcType=VARCHAR},
+        FWLX = #{record.FWLX,jdbcType=VARCHAR},
+        ZRZID = #{record.ZRZID,jdbcType=VARCHAR},
+        ZRZCODE = #{record.ZRZCODE,jdbcType=VARCHAR},
+        ZH = #{record.ZH,jdbcType=VARCHAR},
+        DH = #{record.DH,jdbcType=VARCHAR},
+        SZCQ = #{record.SZCQ,jdbcType=VARCHAR},
+        BZLX = #{record.BZLX,jdbcType=VARCHAR},
+        HBPCID = #{record.HBPCID,jdbcType=VARCHAR},
+        HBSJ = #{record.HBSJ,jdbcType=TIMESTAMP},
+        HBR = #{record.HBR,jdbcType=VARCHAR},
+        LAYER = #{record.LAYER,jdbcType=DECIMAL},
+        FWLY = #{record.FWLY,jdbcType=VARCHAR},
+        BZFYTYBH = #{record.BZFYTYBH,jdbcType=VARCHAR},
+        BZXMTYBH = #{record.BZXMTYBH,jdbcType=VARCHAR},
+        XMID = #{record.XMID,jdbcType=VARCHAR},
+        XMCODE = #{record.XMCODE,jdbcType=VARCHAR},
+        XMMC = #{record.XMMC,jdbcType=VARCHAR},
+        GLJZMJ = #{record.GLJZMJ,jdbcType=DECIMAL},
+        CCSMJ = #{record.CCSMJ,jdbcType=DECIMAL},
+        SFCT = #{record.SFCT,jdbcType=DECIMAL},
+        SFZTZL = #{record.SFZTZL,jdbcType=DECIMAL},
+        SFNRSJTZ = #{record.SFNRSJTZ,jdbcType=DECIMAL},
+        SFGDF = #{record.SFGDF,jdbcType=DECIMAL},
+        SFZGGF = #{record.SFZGGF,jdbcType=DECIMAL},
+        FWDAH = #{record.FWDAH,jdbcType=VARCHAR},
+        HFQK = #{record.HFQK,jdbcType=VARCHAR},
+        SORT_NUM = #{record.SORT_NUM,jdbcType=DECIMAL},
+        DATA_VERSION = #{record.DATA_VERSION,jdbcType=DECIMAL},
+        CREATOR = #{record.CREATOR,jdbcType=VARCHAR},
+        CREATE_TIME = #{record.CREATE_TIME,jdbcType=TIMESTAMP},
+        ZZSJ = #{record.ZZSJ,jdbcType=TIMESTAMP},
+        UPDATOR = #{record.UPDATOR,jdbcType=VARCHAR},
+        UPDATE_TIME = #{record.UPDATE_TIME,jdbcType=TIMESTAMP},
+        YXBZ = #{record.YXBZ,jdbcType=DECIMAL},
+        COMMENTS = #{record.COMMENTS,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.zciel.model.TpoFyxx">
+        update tpo_fyxx
+        <set>
+            <if test="FID != null">
+                FID = #{FID,jdbcType=VARCHAR},
+            </if>
+            <if test="CODE != null">
+                CODE = #{CODE,jdbcType=VARCHAR},
+            </if>
+            <if test="FWID != null">
+                FWID = #{FWID,jdbcType=VARCHAR},
+            </if>
+            <if test="FWCODE != null">
+                FWCODE = #{FWCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="BDCDYDM != null">
+                BDCDYDM = #{BDCDYDM,jdbcType=VARCHAR},
+            </if>
+            <if test="YZDZ != null">
+                YZDZ = #{YZDZ,jdbcType=VARCHAR},
+            </if>
+            <if test="FWZL != null">
+                FWZL = #{FWZL,jdbcType=VARCHAR},
+            </if>
+            <if test="FWXZ != null">
+                FWXZ = #{FWXZ,jdbcType=VARCHAR},
+            </if>
+            <if test="TDDJ != null">
+                TDDJ = #{TDDJ,jdbcType=VARCHAR},
+            </if>
+            <if test="CQZH != null">
+                CQZH = #{CQZH,jdbcType=VARCHAR},
+            </if>
+            <if test="CQDW != null">
+                CQDW = #{CQDW,jdbcType=VARCHAR},
+            </if>
+            <if test="HX != null">
+                HX = #{HX,jdbcType=VARCHAR},
+            </if>
+            <if test="FPFS != null">
+                FPFS = #{FPFS,jdbcType=VARCHAR},
+            </if>
+            <if test="FWFPZT != null">
+                FWFPZT = #{FWFPZT,jdbcType=VARCHAR},
+            </if>
+            <if test="SCPZSJ != null">
+                SCPZSJ = #{SCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="CCPZSJ != null">
+                CCPZSJ = #{CCPZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="LJSYSJ != null">
+                LJSYSJ = #{LJSYSJ,jdbcType=DECIMAL},
+            </if>
+            <if test="ZCS != null">
+                ZCS = #{ZCS,jdbcType=DECIMAL},
+            </if>
+            <if test="SZCS != null">
+                SZCS = #{SZCS,jdbcType=VARCHAR},
+            </if>
+            <if test="FWJG != null">
+                FWJG = #{FWJG,jdbcType=VARCHAR},
+            </if>
+            <if test="JZMJ != null">
+                JZMJ = #{JZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="TNJZMJ != null">
+                TNJZMJ = #{TNJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="FTGGMJ != null">
+                FTGGMJ = #{FTGGMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="SYMJ != null">
+                SYMJ = #{SYMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="JGSJ != null">
+                JGSJ = #{JGSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="JSSJ != null">
+                JSSJ = #{JSSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="KPZZHS != null">
+                KPZZHS = #{KPZZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="YPZHS != null">
+                YPZHS = #{YPZHS,jdbcType=DECIMAL},
+            </if>
+            <if test="FH != null">
+                FH = #{FH,jdbcType=VARCHAR},
+            </if>
+            <if test="DYID != null">
+                DYID = #{DYID,jdbcType=VARCHAR},
+            </if>
+            <if test="DYH != null">
+                DYH = #{DYH,jdbcType=VARCHAR},
+            </if>
+            <if test="FWLX != null">
+                FWLX = #{FWLX,jdbcType=VARCHAR},
+            </if>
+            <if test="ZRZID != null">
+                ZRZID = #{ZRZID,jdbcType=VARCHAR},
+            </if>
+            <if test="ZRZCODE != null">
+                ZRZCODE = #{ZRZCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="ZH != null">
+                ZH = #{ZH,jdbcType=VARCHAR},
+            </if>
+            <if test="DH != null">
+                DH = #{DH,jdbcType=VARCHAR},
+            </if>
+            <if test="SZCQ != null">
+                SZCQ = #{SZCQ,jdbcType=VARCHAR},
+            </if>
+            <if test="BZLX != null">
+                BZLX = #{BZLX,jdbcType=VARCHAR},
+            </if>
+            <if test="HBPCID != null">
+                HBPCID = #{HBPCID,jdbcType=VARCHAR},
+            </if>
+            <if test="HBSJ != null">
+                HBSJ = #{HBSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="HBR != null">
+                HBR = #{HBR,jdbcType=VARCHAR},
+            </if>
+            <if test="LAYER != null">
+                LAYER = #{LAYER,jdbcType=DECIMAL},
+            </if>
+            <if test="FWLY != null">
+                FWLY = #{FWLY,jdbcType=VARCHAR},
+            </if>
+            <if test="BZFYTYBH != null">
+                BZFYTYBH = #{BZFYTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="BZXMTYBH != null">
+                BZXMTYBH = #{BZXMTYBH,jdbcType=VARCHAR},
+            </if>
+            <if test="XMID != null">
+                XMID = #{XMID,jdbcType=VARCHAR},
+            </if>
+            <if test="XMCODE != null">
+                XMCODE = #{XMCODE,jdbcType=VARCHAR},
+            </if>
+            <if test="XMMC != null">
+                XMMC = #{XMMC,jdbcType=VARCHAR},
+            </if>
+            <if test="GLJZMJ != null">
+                GLJZMJ = #{GLJZMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="CCSMJ != null">
+                CCSMJ = #{CCSMJ,jdbcType=DECIMAL},
+            </if>
+            <if test="SFCT != null">
+                SFCT = #{SFCT,jdbcType=DECIMAL},
+            </if>
+            <if test="SFZTZL != null">
+                SFZTZL = #{SFZTZL,jdbcType=DECIMAL},
+            </if>
+            <if test="SFNRSJTZ != null">
+                SFNRSJTZ = #{SFNRSJTZ,jdbcType=DECIMAL},
+            </if>
+            <if test="SFGDF != null">
+                SFGDF = #{SFGDF,jdbcType=DECIMAL},
+            </if>
+            <if test="SFZGGF != null">
+                SFZGGF = #{SFZGGF,jdbcType=DECIMAL},
+            </if>
+            <if test="FWDAH != null">
+                FWDAH = #{FWDAH,jdbcType=VARCHAR},
+            </if>
+            <if test="HFQK != null">
+                HFQK = #{HFQK,jdbcType=VARCHAR},
+            </if>
+            <if test="SORT_NUM != null">
+                SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+            </if>
+            <if test="DATA_VERSION != null">
+                DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+            </if>
+            <if test="CREATOR != null">
+                CREATOR = #{CREATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="CREATE_TIME != null">
+                CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ZZSJ != null">
+                ZZSJ = #{ZZSJ,jdbcType=TIMESTAMP},
+            </if>
+            <if test="UPDATOR != null">
+                UPDATOR = #{UPDATOR,jdbcType=VARCHAR},
+            </if>
+            <if test="UPDATE_TIME != null">
+                UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+            </if>
+            <if test="YXBZ != null">
+                YXBZ = #{YXBZ,jdbcType=DECIMAL},
+            </if>
+            <if test="COMMENTS != null">
+                COMMENTS = #{COMMENTS,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{ID,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.zciel.model.TpoFyxx">
+    update tpo_fyxx
+    set FID = #{FID,jdbcType=VARCHAR},
+      CODE = #{CODE,jdbcType=VARCHAR},
+      FWID = #{FWID,jdbcType=VARCHAR},
+      FWCODE = #{FWCODE,jdbcType=VARCHAR},
+      BDCDYDM = #{BDCDYDM,jdbcType=VARCHAR},
+      YZDZ = #{YZDZ,jdbcType=VARCHAR},
+      FWZL = #{FWZL,jdbcType=VARCHAR},
+      FWXZ = #{FWXZ,jdbcType=VARCHAR},
+      TDDJ = #{TDDJ,jdbcType=VARCHAR},
+      CQZH = #{CQZH,jdbcType=VARCHAR},
+      CQDW = #{CQDW,jdbcType=VARCHAR},
+      HX = #{HX,jdbcType=VARCHAR},
+      FPFS = #{FPFS,jdbcType=VARCHAR},
+      FWFPZT = #{FWFPZT,jdbcType=VARCHAR},
+      SCPZSJ = #{SCPZSJ,jdbcType=TIMESTAMP},
+      CCPZSJ = #{CCPZSJ,jdbcType=TIMESTAMP},
+      LJSYSJ = #{LJSYSJ,jdbcType=DECIMAL},
+      ZCS = #{ZCS,jdbcType=DECIMAL},
+      SZCS = #{SZCS,jdbcType=VARCHAR},
+      FWJG = #{FWJG,jdbcType=VARCHAR},
+      JZMJ = #{JZMJ,jdbcType=DECIMAL},
+      TNJZMJ = #{TNJZMJ,jdbcType=DECIMAL},
+      FTGGMJ = #{FTGGMJ,jdbcType=DECIMAL},
+      SYMJ = #{SYMJ,jdbcType=DECIMAL},
+      JGSJ = #{JGSJ,jdbcType=TIMESTAMP},
+      JSSJ = #{JSSJ,jdbcType=TIMESTAMP},
+      KPZZHS = #{KPZZHS,jdbcType=DECIMAL},
+      YPZHS = #{YPZHS,jdbcType=DECIMAL},
+      FH = #{FH,jdbcType=VARCHAR},
+      DYID = #{DYID,jdbcType=VARCHAR},
+      DYH = #{DYH,jdbcType=VARCHAR},
+      FWLX = #{FWLX,jdbcType=VARCHAR},
+      ZRZID = #{ZRZID,jdbcType=VARCHAR},
+      ZRZCODE = #{ZRZCODE,jdbcType=VARCHAR},
+      ZH = #{ZH,jdbcType=VARCHAR},
+      DH = #{DH,jdbcType=VARCHAR},
+      SZCQ = #{SZCQ,jdbcType=VARCHAR},
+      BZLX = #{BZLX,jdbcType=VARCHAR},
+      HBPCID = #{HBPCID,jdbcType=VARCHAR},
+      HBSJ = #{HBSJ,jdbcType=TIMESTAMP},
+      HBR = #{HBR,jdbcType=VARCHAR},
+      LAYER = #{LAYER,jdbcType=DECIMAL},
+      FWLY = #{FWLY,jdbcType=VARCHAR},
+      BZFYTYBH = #{BZFYTYBH,jdbcType=VARCHAR},
+      BZXMTYBH = #{BZXMTYBH,jdbcType=VARCHAR},
+      XMID = #{XMID,jdbcType=VARCHAR},
+      XMCODE = #{XMCODE,jdbcType=VARCHAR},
+      XMMC = #{XMMC,jdbcType=VARCHAR},
+      GLJZMJ = #{GLJZMJ,jdbcType=DECIMAL},
+      CCSMJ = #{CCSMJ,jdbcType=DECIMAL},
+      SFCT = #{SFCT,jdbcType=DECIMAL},
+      SFZTZL = #{SFZTZL,jdbcType=DECIMAL},
+      SFNRSJTZ = #{SFNRSJTZ,jdbcType=DECIMAL},
+      SFGDF = #{SFGDF,jdbcType=DECIMAL},
+      SFZGGF = #{SFZGGF,jdbcType=DECIMAL},
+      FWDAH = #{FWDAH,jdbcType=VARCHAR},
+      HFQK = #{HFQK,jdbcType=VARCHAR},
+      SORT_NUM = #{SORT_NUM,jdbcType=DECIMAL},
+      DATA_VERSION = #{DATA_VERSION,jdbcType=DECIMAL},
+      CREATOR = #{CREATOR,jdbcType=VARCHAR},
+      CREATE_TIME = #{CREATE_TIME,jdbcType=TIMESTAMP},
+      ZZSJ = #{ZZSJ,jdbcType=TIMESTAMP},
+      UPDATOR = #{UPDATOR,jdbcType=VARCHAR},
+      UPDATE_TIME = #{UPDATE_TIME,jdbcType=TIMESTAMP},
+      YXBZ = #{YXBZ,jdbcType=DECIMAL},
+      COMMENTS = #{COMMENTS,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=VARCHAR}
+  </update>
+</mapper>
